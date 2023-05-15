@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define TRUE 1
+#define FALSE 0
+
 typedef struct {
     char nome[50];
     int quantidade;
@@ -71,9 +74,11 @@ int main()
 {
     ListaDeCompras *lista = criarListadeCompras();
     char produto[50];
-    int quantidade,opcao;
+    int quantidade,opcao,inicio;
 
-    while (1)
+    inicio = TRUE;
+
+    while (inicio)
     {
         printf("\tLista de Compras\n");
         printf("1-Adicionar Produto\n");
@@ -100,15 +105,15 @@ int main()
         case 3:
             listarItens(&lista);
             break;
-        }
         if (opcao == 4)
         {
+            inicio = FALSE;
             break;
         }
         
-
     }
-    
+    free(&(*lista));
     
     return 0;
+}
 }
